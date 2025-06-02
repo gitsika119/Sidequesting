@@ -14,4 +14,4 @@ The completed page has everything double clicked from the DNF page and to trash 
 ## How to use
 Download zip and then run index.html to run in browser, ideally in a 1080x1080 window.
 ## How Code Should Run 
-<p><img src="calc.png" style="float:right;width:420px;height:420px;"></p>
+<p><img src="Screenshot 2025-06-02 182557.png" style="float:right;width:420px;height:420px;"></p>
