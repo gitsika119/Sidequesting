@@ -1,7 +1,7 @@
 # Sidequesting 
 An app I made for my boyfriend because he starts too many books and doesn't remember to finish them :)
 ## Summary 
-The application consists of 3 pages - The Home page goes to DNF page and Completed page. All pages can be accessed from another page at anytime.
+The application consists of 3 pages - The Home page, DNF (Didn't finish) page and Completed page. All pages can be accessed from another page at anytime.
 The DNF page won't let you enter more then 5 tasts at a time andhas the following functionalities:
 
 <ul>
