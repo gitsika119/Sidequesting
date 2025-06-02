@@ -12,6 +12,7 @@ The DNF page won't let you enter more then 5 tasts at a time andhas the followin
     
 The completed page has everything double clicked from the DNF page and to trash tasks forever just click on them.
 ## How to use
-Download zip and then run index.html to run in browser, ideally in a 1080x1080 window.
+Download zip and then run index.html to run in browser, ideally in a 1080x1080 window. 
+You might have to install node_modules before you can run the app.
 ## How Code Should Run 
 <p><img src="Screenshot 2025-06-02 182557.png" style="float:right;width:420px;height:420px;"></p>
