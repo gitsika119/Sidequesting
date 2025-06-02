@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+  <div class="center-buttons">
+    <button class="custom-btn" onclick="playClickSound('page1.html')" style="background-image: url('assets/button1.png');"></button>
+    <button class="custom-btn" onclick="playClickSound('page2.html')" style="background-image: url('assets/button2.png');"></button>
+  </div>
+<audio id="audio-click" src="assets/click.wav" preload="auto"></audio>
+  <script>
+    function playClickSound(destination) {
+      const audio = document.getElementById('audio-click');
+      audio.currentTime = 0; // Restart sound if it's already playing
+      audio.play();
+      setTimeout(() => {
+        location.href = destination;
+      }, 100); // Slight delay so click sound plays before redirect
+    }
+  </script>
+</body>
+</html>
+ 

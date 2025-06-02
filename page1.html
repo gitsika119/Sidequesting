@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page1">
+  <div class="top-right-buttons">
+    <button class="custom-btn" onclick="playClickSound('index.html')" style="background-image: url('assets/home.png');"></button>
+    <button class="custom-btn" onclick="playClickSound('page2.html')" style="background-image: url('assets/button2.png');"></button>
+  </div>
+
+  <div id="wrapper">
+    <img id="sprite" src="assets/cynthia-gen4.png" style="display:none; height:500px; margin-bottom: 10px;">
+    <p id="warning" style="text-align:center; font-weight:bold;"></p>
+    <div id="container"></div>
+  </div>
+
+  <script>
+    function playClickSound(destination) {
+      const audio = document.getElementById('audio-click');
+      audio.currentTime = 0;
+      audio.play();
+      setTimeout(() => {
+        location.href = destination;
+      }, 150);
+    }
+
+    let count = 0;
+    const maxBoxes = 5;
+    let nextIndex = 0;
+    const container = document.getElementById('container');
+    const sprite = document.getElementById('sprite');
+    const warning = document.getElementById('warning');
+
+    function createTextBox(initial = '', index = null) {
+      if (count >= maxBoxes) {
+        sprite.style.display = 'block';
+        return;
+      }
+
+      if (index === null) {
+        index = nextIndex++;
+      } else if (index >= nextIndex) {
+        nextIndex = index + 1;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.classList.add('text-input');
+      textarea.value = initial;
+      textarea.placeholder = "Type and press Enter...";
+
+      textarea.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (textarea.value !== "") {
+            localStorage.setItem('page1_text' + index, textarea.value.trim());
+            localStorage.removeItem('page1_removed' + index);
+          }
+          if (count < maxBoxes) {
+            createTextBox();
+          } else {
+            sprite.style.display = 'block';
+            document.getElementById('audio-warning').play();
+          }
+        }
+      });
+
+      textarea.addEventListener('dblclick', function () {
+        if (textarea.value !== "") {
+          localStorage.setItem('page1_text' + index, textarea.value.trim());
+          localStorage.setItem('page1_removed' + index, 'true');
+          textarea.remove();
+          count--;
+          sprite.style.display = 'none';
+          warning.textContent = '';
+          document.getElementById('audio-remove').play();
+        }
+      });
+
+      container.appendChild(textarea);
+      textarea.focus();
+      count++;
+    }
+
+    // Load saved boxes and update nextIndex correctly
+    for (let i = 0; i < 10000; i++) {
+      const saved = localStorage.getItem('page1_text' + i);
+      const removed = localStorage.getItem('page1_removed' + i);
+      if (saved !== null) {
+        if (i >= nextIndex) nextIndex = i + 1; // ensure no reused index
+        if (removed !== 'true') {
+          createTextBox(saved, i);
+        }
+      }
+    }
+
+    if (count < maxBoxes) {
+      createTextBox();
+    }
+  </script>
+
+  <audio id="audio-warning" src="assets/error.mp3"></audio>
+  <audio id="audio-remove" src="assets/click.wav"></audio>
+  <audio id="audio-click" src="assets/click.wav"></audio>
+</body>
+</html>

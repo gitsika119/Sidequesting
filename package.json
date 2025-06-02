@@ -1,0 +1,22 @@
+{
+  "name": "sidequesting",
+  "version": "1.0.0",
+  "description": "Desktop app for sidequests ;)",
+  "main": "main.js",
+  "scripts": {
+  "start": "electron .",
+  "build": "electron-packager . sidequesting --platform=win32 --arch=x64 --icon=assets/icon.ico --overwrite"
+}
+,
+  "keywords": [
+    "electron",
+    "pokemon",
+    "desktop-app"
+  ],
+  "author": "gitika119",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^36.3.2",
+    "electron-packager": "^17.1.2"
+  }
+}

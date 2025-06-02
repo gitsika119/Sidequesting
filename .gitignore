@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+dist/
+out/
+
+# builds
+build/
+*.log
+
+# macOS and Windows clutter
+.DS_Store
+Thumbs.db
+

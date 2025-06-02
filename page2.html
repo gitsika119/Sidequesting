@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Page 2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page2" style="background-image: url('assets/completed.png');">
+
+  <div class="top-right-buttons">
+    <button class="custom-btn" onclick="playClickSound('index.html')" style="background-image: url('assets/home.png');"></button>
+    <button class="custom-btn" onclick="playClickSound('page1.html')" style="background-image: url('assets/button1.png');"></button>
+  </div>
+
+  <div id="removed-container"></div>
+
+  <script>
+    function playClickSound(destination) {
+      const audio = document.getElementById('audio-click');
+      audio.currentTime = 0;
+      audio.play();
+      setTimeout(() => {
+        location.href = destination;
+      }, 100);
+    }
+
+    const container = document.getElementById('removed-container');
+    let batchSize = 20;
+    let currentIndex = 0;
+    let maxIndex = 10000;
+
+    function loadNextBatch() {
+      for (let i = currentIndex; i < currentIndex + batchSize && i < maxIndex; i++) {
+        const text = localStorage.getItem('page1_text' + i);
+        const removed = localStorage.getItem('page1_removed' + i);
+        if (text === null || removed !== 'true') continue;
+
+        const box = document.createElement('textarea');
+        box.value = text;
+        box.readOnly = true;
+        box.classList.add('text-input');
+
+        box.addEventListener('click', () => {
+          localStorage.removeItem('page1_text' + i);
+          localStorage.removeItem('page1_removed' + i);
+          box.remove();
+          document.getElementById('audio-trash').play();
+        });
+
+        container.appendChild(box);
+      }
+      currentIndex += batchSize;
+    }
+
+    // Load initial batch if screen not scrollable
+    setTimeout(() => {
+      if (document.body.scrollHeight <= window.innerHeight + 100) {
+        loadNextBatch();
+      }
+    }, 50);
+
+    // Load on scroll
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(() => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+          loadNextBatch();
+        }
+      });
+    });
+  </script>
+
+  <audio id="audio-trash" src="assets/recycle.wav"></audio>
+  <audio id="audio-click" src="assets/click.wav"></audio>
+</body>
+</html>
