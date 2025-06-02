@@ -7,7 +7,7 @@ The DNF page won't let you enter more then 5 tasts at a time and has the followi
 <ul>
   <li>Double click to mark task as Completed (shows on completed page)</li>
   <li>Click to edit task </li>
-  <li>Enter to get new text box (<5 tasks) or a Cynthia sprite saying no (page has 5 tasks)</li>
+  <li>Enter to get either a new text box (<5 tasks) or a Cynthia sprite saying no (page has 5 tasks)</li>
 </ul>
     
 The completed page has everything double clicked from the DNF page and to trash tasks forever just click on them.
