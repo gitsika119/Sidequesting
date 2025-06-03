@@ -21,5 +21,6 @@ npm start </li>
 <li>
   (Better way) Download .zip from Releases, unzip and run "Sidequesting.exe" (Will need to click more info/ run anyway because I'm an unidentified publisher)
 </li><br></ol>
+
 ## How Code Should Run 
 <p><img src="Screenshot 2025-06-02 182557.png" style="float:right;width:420px;height:420px;"></p>
